@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+  userservice:
+    container_name: userservice
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - userservice
+      - authservice
+    environment:
+        - MONGO_DB=userservice
+        - MONGO_URI=mongodb://playbox:pl4yv0x@mongodb:27017/userservice
+    command: 'python app.py runserver 0.0.0.0:8200'
+    ports:
+        - 8200:8200
+    volumes:
+        - .:/app
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: userservice_mdb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: p4ssw0rd
+      MONGO_INITDB_USERNAME: playbox
+      MONGO_INITDB_PASSWORD: pl4yv0x
+      MONGO_INITDB_DATABASE: userservice
+    volumes:
+      - ./mongodb/data:/data/db
+      - ./config/mongo/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
+      - ./config/mongo/populate-mongo.sh:/docker-entrypoint-initdb.d/populate-mongo.sh
+    ports:
+      - 27100:27017
+    networks:
+      - userservice
+
+networks:
+  userservice:
+    name: userservice
+    driver: bridge
+  authservice:
+    name: authservice
+    driver: bridge
+
+volumes:
+  mongodb:
+    driver: local
