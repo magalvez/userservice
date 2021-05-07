@@ -1,4 +1,32 @@
-To use pipenv follow this steps:
+# userservice
+
+## Prepare your environment
+
+    ## 1) mkdir Playvox
+    ## 2) https://github.com/magalvez/userservice.git
+    ## 3) docker-compose up -d
+
+## MongoDB
+This database contain the following collection:
+    ## 1) user
+    
+This collection is populated when the docker container is created with the following data:
+
+db.user.insert({"_id": ObjectId("5c9ccc140aee604c4ab6cd06"), "user_id": "105398890", "pin": 2091, "user_name": "playvox", "password": "pl4yv0x", "create_date": ISODate("2021-03-06 01:37:14.422Z")})
+db.user.insert({"_id": ObjectId("5c9ccc140aee604c4ab6cd07"), "user_id": "105398891", "pin": 2090, "user_name": "docker", "password": "d0ck3r", "create_date": ISODate("2021-03-06 01:57:14.422Z")})
+
+The data is auto populated each time the folder `mongodb` is deleted
+
+# Service URL
+http://localhost:8200/
+
+## Testing via postmant
+To test it with postman use the following collection:
+https://www.getpostman.com/collections/e1daefda0d281339afeb
+
+---------------------------------------------
+
+To use without dokcer pipenv follow this steps:
 
 1) pip install pipenv
 2) pipenv shell
