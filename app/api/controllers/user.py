@@ -40,7 +40,7 @@ class UserController(object):
         """
         Validate user account by filters user_id and pin
         :param user_data: Filters to get users. Ie {id: 10}
-        :returns dict, Ie {'valid_user': True}
+        :returns dict, Ie {'is_valid': True}
         """
         if not get(user_data, ['user_id']) or not get(user_data, ['pin']):
             raise BadRequest
@@ -49,7 +49,7 @@ class UserController(object):
         if not user:
             raise UserInvalidVerification(user_data['user_id'], user_data['pin'])
 
-        return {'valid_user': True}
+        return {'is_valid': True}
 
     @staticmethod
     def save(user_data):

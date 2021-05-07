@@ -8,6 +8,7 @@ services:
     networks:
       - userservice
       - authservice
+      - customerservice
     environment:
         - MONGO_DB=userservice
         - MONGO_URI=mongodb://playbox:pl4yv0x@mongodb:27017/userservice
@@ -44,6 +45,9 @@ networks:
     driver: bridge
   authservice:
     name: authservice
+    driver: bridge
+  customerservice:
+    name: customerservice
     driver: bridge
 
 volumes:
