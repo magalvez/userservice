@@ -18,6 +18,10 @@ db.user.insert({"_id": ObjectId("5c9ccc140aee604c4ab6cd07"), "user_id": "1053988
 
 The data is auto populated each time the folder `mongodb` is deleted
 
+# TEST
+The project contains integrations test using a `In Memory MongoDB database` to validate the endpoints operations,
+you can find it inside the folder `test/api/v1_0`
+
 # Service URL
 http://localhost:8200/
 

@@ -14,6 +14,9 @@ Flask-Cors = "==3.0.9"
 Flask-Restful = "==0.3.8"
 flask-mongoengine = "==1.0.0"
 werkzeug = "==1.0.1"
+mock = "==2.0.0"
+contexter = "==0.1.4"
+pymongo-inmemory = "==0.2.0"
 
 [requires]
 python_version = "3.7"

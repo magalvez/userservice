@@ -45,11 +45,13 @@ class UserController(object):
         if not get(user_data, ['user_id']) or not get(user_data, ['pin']):
             raise BadRequest
 
+        is_valid = {'is_valid': True}
+
         user = UserManager.validate_user_account(user_data)
         if not user:
-            raise UserInvalidVerification(user_data['user_id'], user_data['pin'])
+            is_valid = {'is_valid': False}
 
-        return {'is_valid': True}
+        return is_valid
 
     @staticmethod
     def save(user_data):
